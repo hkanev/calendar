@@ -1,0 +1,11 @@
+{
+  "name": "webhook-calendar",
+  "version": "0.0.1",
+  "description": "webhook for calendar",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon index.js"
+  },
+  "author": "Hristian",
+  "license": "ISC"
+}
