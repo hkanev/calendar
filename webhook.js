@@ -2,6 +2,8 @@ $(() => {
     let webhook = 'https://discordapp.com/api/webhooks/367279365978980354/mRhaQl_167FOvxcTVN7wJWkRjREpwZh-jqbFQOCkJvZnvTO3Bbv4YGfgOaVYlEWoEPeB';
     let bot = 'EventCreator';
 
+    setDate();
+
     $('#submit').on('click', () => {
         event.preventDefault();
 
@@ -24,9 +26,27 @@ $(() => {
     });
 
     $('#cancel').on('click', () => {
+        event.preventDefault();
        let req = requester.post(webhook, '!event cancel', bot);
        $.ajax(req);
     });
+
+
+    function setDate(){
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; //January is 0!
+
+        var yyyy = today.getFullYear();
+        if(dd<10){
+            dd='0'+dd;
+        }
+        if(mm<10){
+            mm='0'+mm;
+        }
+        var today = yyyy+'/'+mm+'/'+dd;
+        document.getElementById("date").value = today;
+    }
 });
 
 let requester = (() => {
