@@ -22,6 +22,11 @@ $(() => {
         setTimeout(function() { $.ajax(endDateReq) }, 6000);
         setTimeout(function() { $.ajax(confirm) }, 8000);
     });
+
+    $('#cancel').on('click', () => {
+       let req = requester.post(webhook, '!event cancel', bot);
+       $.ajax(req);
+    });
 });
 
 let requester = (() => {
