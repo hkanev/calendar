@@ -16,7 +16,7 @@ $(() => {
         dateContent = dateContent.join('/');
         let startContent = dateTime.split(' ')[1];
 
-        let command = `!create  289812771984506880  "${nameContent}" ${startContent} date ${dateContent} "${descriptionContent}"`;
+        let command = `!create  370276335647588352  "${nameContent}" ${startContent} date ${dateContent} "${descriptionContent}"`;
 
 
         let commandReq = requester.post(webhook, command, bot);
