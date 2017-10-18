@@ -4,56 +4,61 @@
     <meta charset="UTF-8">
     <title>Calendar</title>
     <link rel="stylesheet" href="https://bootswatch.com/united/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="webhook.js"></script>
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript"  src="webhook.js"></script>
+    <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="node_modules/moment/min/moment.min.js"></script>
+    <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/node_modules/bootstrap-datetimepicker-npm/build/js/bootstrap-datetimepicker.min.js"></script>
+    <link rel="stylesheet"
+          href="node_modules/bootstrap-datetimepicker-npm/build/css/bootstrap-datetimepicker-standalone.css">
+    <script src="node_modules/bootstrap-datetimepicker-npm/build/js/bootstrap-datetimepicker.min.js"></script>
 
 </head>
 <body>
     <div class="row">
-        <div class="col-lg-6 well bs-component">
+        <div class="col-lg-8 well bs-component">
     <form  class="form-horizontal">
         <fieldset>
         <legend>Event info</legend>
         <div class="form-group">
             <label for="name" class="col-lg-2 control-label">Name</label>
-            <div class="col-lg-10">
+            <div class=" input-group  col-lg-10">
                 <input type="text" class="form-control" id="name" name="name" required>
             </div>
         </div>
+
         <div class="form-group">
             <label for="description" class="col-lg-2 control-label">Description</label>
-            <div class="col-lg-10">
+            <div class="input-group  col-lg-10 ">
                 <input type="text" class="form-control" id="description" name="description" required>
             </div>
         </div>
-        <div class="form-group">
-            <label for="date" class="col-lg-2 control-label">Date</label>
-            <div class="col-lg-10">
-                <input type="text" class="form-control" id="date" name="date">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="startTime" class="col-lg-2 control-label">Start Time</label>
-            <div class="col-lg-10">
-                <input type="text" class="form-control" id="startTime" name="startTime" value="21:00:00">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="endTime" class="col-lg-2 control-label">End Time</label>
-            <div class="col-lg-10">
-                <input type="text" class="form-control" id="endTime" name="endTime" value="23:00:00">
-            </div>
-        </div>
+
+
+
+
+         <div class="form-group">
+              <label for="datetimepicker5" class="col-lg-2 control-label">Date and Time</label>
+                  <div class='input-group date' id='datetimepicker5'>
+                       <input type='text' class="form-control" id="dateTime" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                  </div>
+          </div>
+
+
+
             <button class="btn btn-default" id='cancel' style="margin-left: 17%;">Cancel</button>
             <button class="btn btn-primary" name="submit" id="submit">Create Event</button>
         </fieldset>
     </form>
         </div>
     </div>
-</body>
-<script>
-    $(document).ready(function(){
 
-    });
-</script>
+
+</body>
 </html>

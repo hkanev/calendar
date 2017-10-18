@@ -1,34 +1,31 @@
 $(() => {
-    let webhook = 'https://discordapp.com/api/webhooks/367279365978980354/mRhaQl_167FOvxcTVN7wJWkRjREpwZh-jqbFQOCkJvZnvTO3Bbv4YGfgOaVYlEWoEPeB';
+    let webhook = 'https://discordapp.com/api/webhooks/370175718208045066/MAkJKamDTGQfxed4McLp6Jy6oKq1smtX0jZf6vpQn-3J4-jxeAeW4SiDSU4igw2tysFK';
     let bot = 'EventCreator';
 
-    setDate();
+    initCalendar();
 
     $('#submit').on('click', () => {
         event.preventDefault();
 
-        let nameContent = '!event create ' + $('#name').val();
-        let descriptionContent = '!event description ' + $('#description').val();
-        let startContent = '!event startDate ' + $('#date').val() + "-" + $('#startTime').val();
-        let endContent = '!event endDate ' + $('#date').val() + "-" + $('#endTime').val();
+        let nameContent = $('#name').val();
+        let descriptionContent = $('#description').val();
+        let dateTime = $('#dateTime').val();
+        let dateContent = dateTime.split(' ')[0];
+        dateContent = dateContent.split('/');
+        dateContent.pop();
+        dateContent = dateContent.join('/');
+        let startContent = dateTime.split(' ')[1];
 
-        let nameReq = requester.post(webhook, nameContent, bot);
-        let descriptionReq = requester.post(webhook, descriptionContent, bot);
-        let startDateReq = requester.post(webhook, startContent, bot);
-        let endDateReq = requester.post(webhook, endContent, bot);
-        let confirm = requester.post(webhook, '!event confirm', bot);
+        let command = `!create  370179411502170113  "${nameContent}" ${startContent} date ${dateContent} "${descriptionContent}"`;
 
-        $.ajax(nameReq);
-        setTimeout(function() { $.ajax(descriptionReq) }, 2000);
-        setTimeout(function() {$.ajax(startDateReq) }, 4000);
-        setTimeout(function() { $.ajax(endDateReq) }, 6000);
-        setTimeout(function() { $.ajax(confirm) }, 8000);
+
+        let commandReq = requester.post(webhook, command, bot);
+        $.ajax(commandReq);
+
     });
 
     $('#cancel').on('click', () => {
-        event.preventDefault();
-       let req = requester.post(webhook, '!event cancel', bot);
-       $.ajax(req);
+        location.reload();
     });
 
 
@@ -44,9 +41,15 @@ $(() => {
         if(mm<10){
             mm='0'+mm;
         }
-        var today = yyyy+'/'+mm+'/'+dd;
-        document.getElementById("date").value = today;
+        var today = yyyy+'/'+mm+'/'+dd + ' 21:00';
+        return today;
     }
+
+    function initCalendar() {
+        $('#datetimepicker5').datetimepicker({
+            defaultDate: setDate(),
+        });
+        }
 });
 
 let requester = (() => {
