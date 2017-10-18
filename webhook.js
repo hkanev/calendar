@@ -1,8 +1,13 @@
 $(() => {
-    let webhook = 'https://discordapp.com/api/webhooks/370275455640535051/WkqfSB0t9u3JQ7ujVKHqyYON2RyK0_hdtcKVPsaVQcgVoxmYBC5qhuleIsI8zD3RV1PS';
+    let baseurl = 'https://discordapp.com/api/webhooks/';
+    let token = 'WkqfSB0t9u3JQ7ujVKHqyYON2RyK0_hdtcKVPsaVQcgVoxmYBC5qhuleIsI8zD3RV1PS';
+    let id  = '370275455640535051';
+
+    let webhook = baseurl + id + '/' + token;
     let bot = 'EventCreator';
 
     initCalendar();
+
 
     $('#submit').on('click', () => {
         event.preventDefault();
