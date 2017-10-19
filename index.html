@@ -5,7 +5,6 @@
     <title>Calendar</title>
     <link rel="stylesheet" href="https://bootswatch.com/united/bootstrap.min.css">
     <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
-
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript"  src="webhook.js"></script>
     <script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>
@@ -15,47 +14,59 @@
     <link rel="stylesheet"
           href="lib/bootstrap-datetimepicker-npm/build/css/bootstrap-datetimepicker-standalone.css">
     <script src="lib/bootstrap-datetimepicker-npm/build/js/bootstrap-datetimepicker.min.js"></script>
+    <link rel="stylesheet" href="style.css">
 
 </head>
 <body>
     <div class="row">
-        <div class="col-lg-8 well bs-component">
-    <form  class="form-horizontal">
-        <fieldset>
-        <legend>Event info</legend>
-        <div class="form-group">
-            <label for="name" class="col-lg-2 control-label">Name</label>
-            <div class=" input-group  col-lg-10">
-                <input type="text" class="form-control" id="name" name="name" required>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="description" class="col-lg-2 control-label">Description</label>
-            <div class="input-group  col-lg-10 ">
-                <input type="text" class="form-control" id="description" name="description" required>
-            </div>
-        </div>
-
-
-
-
-         <div class="form-group">
-              <label for="datetimepicker5" class="col-lg-2 control-label">Date and Time</label>
-                  <div class='input-group date' id='datetimepicker5'>
-                       <input type='text' class="form-control" id="dateTime" />
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                  </div>
-          </div>
-
-
-
+        <div class="col-lg-5 well bs-component">
+            <div class="col-md-12">
+            <form  class="form-horizontal">
+             <fieldset>
+             <legend>Event info</legend>
+                <div class="form-group">
+                    <label for="name" class="col-lg-2 control-label">Name</label>
+                    <div class=" input-group  col-lg-10">
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="description" class="col-lg-2 control-label">Description</label>
+                    <div class="input-group  col-lg-10 ">
+                        <input type="text" class="form-control" id="description" name="description" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="datetimepicker5" class="col-lg-2 control-label">Date and Time</label>
+                        <div class='input-group date' id='datetimepicker5'>
+                             <input type='text' class="form-control" id="dateTime" />
+                                  <span class="input-group-addon">
+                                      <span class="glyphicon glyphicon-calendar"></span>
+                                  </span>
+                         </div>
+                </div>
             <button class="btn btn-default" id='cancel' style="margin-left: 17%;">Cancel</button>
             <button class="btn btn-primary" name="submit" id="submit">Create Event</button>
-        </fieldset>
-    </form>
+            </fieldset>
+            </form>
+            </div>
+        </div>
+
+        <div class="col-lg-5 well bs-component" id="control-panel">
+            <form  class="form-horizontal">
+                <fieldset>
+                    <legend>Announcement Info</legend>
+                        <div class="form-group">
+                            <label for="eventId" class="col-lg-2 control-label">Event ID</label>
+                            <div class=" input-group  col-lg-10">
+                                <input type="text" class="form-control" id="eventId" name="eventId">
+                            </div>
+                        </div>
+                    <button class="btn btn-danger" id='defaultBtn' style="margin-left: 17%;">Default</button>
+                    <button class="btn btn-default" id='autowinBtn'>Autowin</button>
+                    <button class="btn btn-primary" name="announcementsBtn" id="announcementsBtn">Siege</button>
+                </fieldset>
+            </form>
         </div>
     </div>
 
