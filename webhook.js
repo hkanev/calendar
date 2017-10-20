@@ -1,23 +1,18 @@
 $(() => {
     let baseurl = 'https://discordapp.com/api/webhooks/';
-
-    let token = 'WkqfSB0t9u3JQ7ujVKHqyYON2RyK0_hdtcKVPsaVQcgVoxmYBC5qhuleIsI8zD3RV1PS';
-    let id  = '370275455640535051';
-    let webhookNugos = baseurl + id + '/' + token;
-
-    let testWebhook = 'https://discordapp.com/api/webhooks/370175718208045066/MAkJKamDTGQfxed4McLp6Jy6oKq1smtX0jZf6vpQn-3J4-jxeAeW4SiDSU4igw2tysFK';
-    let testId = '370582148022796288';
-    let testCalendarId = '370582148022796288';
-
     let bot = 'EventCreator';
 
-    let webhook = testWebhook;
-    let chnId = testId;
-    let calendarId = testCalendarId;
+    //config discord
+    let token = 'WkqfSB0t9u3JQ7ujVKHqyYON2RyK0_hdtcKVPsaVQcgVoxmYBC5qhuleIsI8zD3RV1PS';
+    let id  = '370275455640535051';
+    let webhook = baseurl + id + '/' + token;
+    let chnId = '289812771984506880';
+    let calendarId = '370842343609466880';
 
+    //init
     initCalendar();
 
-
+    //events
     $('#submit').on('click', () => {
         event.preventDefault();
 
@@ -28,35 +23,28 @@ $(() => {
         dateContent = dateContent.split('/');
         dateContent.pop();
         dateContent = dateContent.join('/');
-        let startContent = dateTime.split(' ')[1];
+        let startContent = dateTime.split(' ')[1]+dateTime.split(' ')[2];
+        let command = `!create  ${calendarId}  "${nameContent}" ${startContent} date ${dateContent} image https://s3.amazonaws.com/files.enjin.com/973675/Post%20Headers/BDO_Node_War.png "${descriptionContent}"`;
 
-        let command = `!create  ${chnId}  "${nameContent}" ${startContent} date ${dateContent} "${descriptionContent}"`;
-
-        let req = requester.post(webhook, command, bot);
-        $.ajax(req);
+        sender.send(webhook, bot, [command]);
+        setTimeout(function () {location.reload()}, 1000);
     });
-
     $('#cancel').on('click', () => {
         location.reload();
     });
-
     $('#announcementsBtn').on('click', () => {
         event.preventDefault();
 
         let eventId = $('#eventId').val();
         let mainAnnouncement = `!config ${calendarId} message "%t уже началась!"`;
-        let command1 = `!announcements ${eventId} add ${chnId} start-1h  "%t начнется в %s (мск).  %n Самое время заюзать обеды, пробафаться, и взять банок и аптечек!"`;
+        let command1 = `!announcements ${eventId} add ${chnId} start-58m  "%t начнется в %s (мск).  %n Самое время заюзать обеды, пробафаться, и взять банок и аптечек!"`;
         let command2 = `!announcements ${eventId} add ${chnId} start-30m  "%t начнется в %s (мск).  %n Осталось совсем мало времени! Бафы, аптечки, банки, и главное КАМЕНЬ ДЛЯ РЕМОНТА КИПА!"`;
+        let command3 = `!edit ${eventId} image https://s3.amazonaws.com/files.enjin.com/973675/Post%20Headers/BDO_Node_War.png`;
+        let commands = [mainAnnouncement, command1, command2,command3];
 
-        let mainAnnouncementReq = requester.post(webhook, mainAnnouncement, bot);
-        let announce1Req = requester.post(webhook, command1, bot);
-        let announce2Req = requester.post(webhook, command2, bot);
+        sender.send(webhook, bot, commands);
 
-       $.ajax(mainAnnouncementReq);
-        setTimeout(function () {$.ajax(announce1Req)}, 1500);
-        setTimeout(function () {$.ajax(announce2Req)}, 3000);
     });
-
     $('#autowinBtn').on('click', () => {
         event.preventDefault();
 
@@ -66,26 +54,19 @@ $(() => {
         let remove2 = `!announcements ${eventId} remove 2`;
         let comment = `!edit ${eventId} comment add "АУТОВИН - Враги не пришли, автовин :frowning:"`;
 
-        let mainAnnouncementReq = requester.post(webhook, mainAnnouncement, bot);
-        let remove1req = requester.post(webhook, remove1, bot);
-        let remove2req = requester.post(webhook, remove2, bot);
-        let commentReq = requester.post(webhook, comment, bot);
+        let commands = [mainAnnouncement, remove2, remove1, comment];
 
-        $.ajax(mainAnnouncementReq);
-        setTimeout(function () {$.ajax(remove2req)}, 1500);
-        setTimeout(function () {$.ajax(remove1req)}, 3000);
-        setTimeout(function () {$.ajax(commentReq)}, 4500);
+        sender.send(webhook, bot, commands);
     });
-
     $('#defaultBtn').on('click', () => {
         event.preventDefault();
 
-        let mainAnnouncement = `!config ${calendarId} message "%t уже началась!"`;
-        let mainAnnouncementReq = requester.post(webhook, mainAnnouncement, bot);
-        $.ajax(mainAnnouncementReq);
+         let command = [`!config ${calendarId} message "%t уже началась!"`];
+         sender.send(webhook, bot, command)
 
     });
 
+    //functions
     function setDate(){
         var today = new Date();
         var dd = today.getDate();
@@ -101,30 +82,10 @@ $(() => {
         var today = yyyy+'/'+mm+'/'+dd + ' 21:00';
         return today;
     }
-
     function initCalendar() {
         $('#datetimepicker5').datetimepicker({
             defaultDate: setDate(),
         });
         }
-
-
 });
 
-let requester = (() => {
-    function post(url, content, bot) {
-        return req = {
-            method: "POST",
-            url: url,
-            contentType: 'application/json',
-            data: JSON.stringify({
-                "content": content,
-                "username": bot
-            })
-        }
-    }
-
-    return {
-        post
-    };
-})();
