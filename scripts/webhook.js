@@ -37,8 +37,8 @@ $(() => {
 
         let eventId = $('#eventId').val();
         let mainAnnouncement = `!config ${calendarId} message "%t уже началась!"`;
-        let command1 = `!announcements ${eventId} add ${chnId} start-58m  "%t начнется в %s (мск).  %n Самое время заюзать обеды, пробафаться, и взять банок и аптечек!"`;
-        let command2 = `!announcements ${eventId} add ${chnId} start-30m  "%t начнется в %s (мск).  %n Осталось совсем мало времени! Бафы, аптечки, банки, и главное КАМЕНЬ ДЛЯ РЕМОНТА КИПА!"`;
+        let command1 = `!announcements ${eventId} add ${chnId} start-58m  "%t начнется в %s (мск).  %nСамое время заюзать обеды, пробафаться, и взять банок и аптечек!"`;
+        let command2 = `!announcements ${eventId} add ${chnId} start-30m  "%t начнется в %s (мск).  %nОсталось совсем мало времени! Бафы, аптечки, банки, и главное КАМЕНЬ ДЛЯ РЕМОНТА КИПА!"`;
         let command3 = `!edit ${eventId} image https://s3.amazonaws.com/files.enjin.com/973675/Post%20Headers/BDO_Node_War.png`;
         let commands = [mainAnnouncement, command1, command2,command3];
 
