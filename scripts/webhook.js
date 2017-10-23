@@ -36,9 +36,9 @@ $(() => {
         event.preventDefault();
 
         let eventId = $('#eventId').val();
-        let mainAnnouncement = `!config ${calendarId} message "%t уже началась!"`;
-        let command1 = `!announcements ${eventId} add ${chnId} start-58m  "%t начнется в %s (мск).  %nСамое время заюзать обеды, пробафаться, и взять банок и аптечек!"`;
-        let command2 = `!announcements ${eventId} add ${chnId} start-30m  "%t начнется в %s (мск).  %nОсталось совсем мало времени! Бафы, аптечки, банки, и главное КАМЕНЬ ДЛЯ РЕМОНТА КИПА!"`;
+        let mainAnnouncement = `!config ${calendarId}  message "@everyone %t уже началась!"`;
+        let command1 = `!announcements ${eventId} add ${chnId} start-58m  "@everyone %t начнется в %s (мск).  %nСамое время заюзать обеды, пробафаться, и взять банок и аптечек!"`;
+        let command2 = `!announcements ${eventId} add ${chnId} start-30m  "@everyone %t начнется в %s (мск).  %nОсталось совсем мало времени! Бафы, аптечки, банки, и главное КАМЕНЬ ДЛЯ РЕМОНТА КИПА!"`;
         let command3 = `!edit ${eventId} image https://s3.amazonaws.com/files.enjin.com/973675/Post%20Headers/BDO_Node_War.png`;
         let commands = [mainAnnouncement, command1, command2,command3];
 
@@ -49,7 +49,7 @@ $(() => {
         event.preventDefault();
 
         let eventId = $('#eventId').val();
-        let mainAnnouncement = `!config ${calendarId} message "АУТОВИН - Враги не пришли, автовин :frowning:"`;
+        let mainAnnouncement = `!config ${calendarId} message "@everyone АУТОВИН - Враги не пришли, автовин :frowning:"`;
         let remove1 = `!announcements ${eventId} remove 1`;
         let remove2 = `!announcements ${eventId} remove 2`;
         let comment = `!edit ${eventId} comment add "АУТОВИН - Враги не пришли, автовин :frowning:"`;
@@ -61,7 +61,7 @@ $(() => {
     $('#defaultBtn').on('click', () => {
         event.preventDefault();
 
-         let command = [`!config ${calendarId} message "%t уже началась!"`];
+         let command = [`!config ${calendarId} message "@everyone %t уже началась!"`];
          sender.send(webhook, bot, command)
 
     });
