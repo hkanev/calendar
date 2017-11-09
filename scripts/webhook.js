@@ -79,7 +79,7 @@ $(() => {
         if(mm<10){
             mm='0'+mm;
         }
-        var today = yyyy+'/'+mm+'/'+dd + ' 21:00';
+        var today = yyyy+'/'+mm+'/'+dd + ' 22:00';
         return today;
     }
     function initCalendar() {
