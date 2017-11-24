@@ -9,6 +9,9 @@ $(() => {
     let chnId = '289812771984506880';
     let calendarId = '370842343609466880';
 
+    let hwebhook = "https://discordapp.com/api/webhooks/383551455816056835/K89Euy9JAaj-0BHxrN92vcHaV1_K5nSUJNN_YHpRKTwvsZKcyQIYMFaR1f-rwl6yOlX3";
+    let calendar  = '383350436092051457';
+
     //init
     initCalendar();
 
@@ -24,9 +27,12 @@ $(() => {
         dateContent.pop();
         dateContent = dateContent.join('/');
         let startContent = dateTime.split(' ')[1]+dateTime.split(' ')[2];
+        let bgTime = convertDate(dateTime.split(' ')[1], dateTime.split(' ')[2]);
         let command = `!create  ${calendarId}  "${nameContent}" ${startContent} date ${dateContent} image https://s3.amazonaws.com/files.enjin.com/973675/Post%20Headers/BDO_Node_War.png "${descriptionContent}"`;
+        let hcommand = `!create  ${calendar}  "${nameContent}" ${bgTime} date ${dateContent} image https://s3.amazonaws.com/files.enjin.com/973675/Post%20Headers/BDO_Node_War.png "${descriptionContent}"`;
 
         sender.send(webhook, bot, [command]);
+        sender.send(hwebhook, bot, [hcommand]);
         setTimeout(function () {location.reload()}, 1000);
     });
     $('#cancel').on('click', () => {
@@ -82,6 +88,11 @@ $(() => {
         var today = yyyy+'/'+mm+'/'+dd + ' 22:00';
         return today;
     }
+
+    function convertDate(time, time1){
+        return (time.split(':')[0] - 1) + ":"+ time.split(':')[1]+time1;
+    }
+
     function initCalendar() {
         $('#datetimepicker5').datetimepicker({
             defaultDate: setDate(),
